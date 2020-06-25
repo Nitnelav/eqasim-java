@@ -10,15 +10,17 @@
 
 	<modules>
 		<module>core</module>
+		<!--
 		<module>switzerland</module>
-		<module>ile_de_france</module>
-		<module>nantes</module>
 		<module>sao_paulo</module>
-		<module>automated_vehicles</module>
-		<module>examples</module>
 		<module>san_francisco</module>
 		<module>los_angeles</module>
 		<module>auckland</module>
+		-->
+		<module>ile_de_france</module>
+		<module>nantes</module>
+		<module>automated_vehicles</module>
+		<module>examples</module>
 	</modules>
 
 	<properties>
