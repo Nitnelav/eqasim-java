@@ -8,7 +8,7 @@ public class NantesCostParameters implements ParameterDefinition {
 	public static NantesCostParameters buildDefault() {
 		NantesCostParameters parameters = new NantesCostParameters();
 
-		parameters.carCost_EUR_km = 0.2;
+		parameters.carCost_EUR_km = 0.15;
 
 		return parameters;
 	}

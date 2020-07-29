@@ -11,7 +11,10 @@ import org.eqasim.nantes.mode_choice.costs.NantesCarCostModel;
 import org.eqasim.nantes.mode_choice.costs.NantesPtCostModel;
 import org.eqasim.nantes.mode_choice.parameters.NantesCostParameters;
 import org.eqasim.nantes.mode_choice.parameters.NantesModeParameters;
+import org.eqasim.nantes.mode_choice.utilities.estimators.NantesBikeUtilityEstimator;
+import org.eqasim.nantes.mode_choice.utilities.estimators.NantesCarUtilityEstimator;
 import org.eqasim.nantes.mode_choice.utilities.predictors.NantesPersonPredictor;
+import org.eqasim.nantes.mode_choice.utilities.predictors.NantesSpatialPredictor;
 import org.matsim.core.config.CommandLine;
 import org.matsim.core.config.CommandLine.ConfigurationException;
 
@@ -26,6 +29,9 @@ public class NantesModeChoiceModule extends AbstractEqasimExtension {
 	public static final String CAR_COST_MODEL_NAME = "NantesCarCostModel";
 	public static final String PT_COST_MODEL_NAME = "NantesPtCostModel";
 
+	public static final String CAR_ESTIMATOR_NAME = "NantesCarUtilityEstimator";
+	public static final String BIKE_ESTIMATOR_NAME = "NantesBikeUtilityEstimator";
+
 	public NantesModeChoiceModule(CommandLine commandLine) {
 		this.commandLine = commandLine;
 	}
@@ -38,6 +44,10 @@ public class NantesModeChoiceModule extends AbstractEqasimExtension {
 
 		bindCostModel(CAR_COST_MODEL_NAME).to(NantesCarCostModel.class);
 		bindCostModel(PT_COST_MODEL_NAME).to(NantesPtCostModel.class);
+
+		bindUtilityEstimator(CAR_ESTIMATOR_NAME).to(NantesCarUtilityEstimator.class);
+		bindUtilityEstimator(BIKE_ESTIMATOR_NAME).to(NantesBikeUtilityEstimator.class);
+		bind(NantesSpatialPredictor.class);
 
 		bind(ModeParameters.class).to(NantesModeParameters.class);
 	}

@@ -16,14 +16,26 @@ public class RunAdaptConfig {
 	}
 
 	static public void adaptConfiguration(Config config) {
+		// Adjust eqasim config
 		EqasimConfigGroup eqasimConfig = EqasimConfigGroup.get(config);
 
 		eqasimConfig.setCostModel(TransportMode.car, NantesModeChoiceModule.CAR_COST_MODEL_NAME);
 		eqasimConfig.setCostModel(TransportMode.pt, NantesModeChoiceModule.PT_COST_MODEL_NAME);
 
+		eqasimConfig.setEstimator(TransportMode.car, NantesModeChoiceModule.CAR_ESTIMATOR_NAME);
+		eqasimConfig.setEstimator(TransportMode.bike, NantesModeChoiceModule.BIKE_ESTIMATOR_NAME);
+
 		DiscreteModeChoiceConfigGroup dmcConfig = (DiscreteModeChoiceConfigGroup) config.getModules()
 				.get(DiscreteModeChoiceConfigGroup.GROUP_NAME);
 
 		dmcConfig.setModeAvailability(NantesModeChoiceModule.MODE_AVAILABILITY_NAME);
+
+		// Calibration results for 5%
+
+		if (eqasimConfig.getSampleSize() == 0.05) {
+			// Adjust flow and storage capacity
+			config.qsim().setFlowCapFactor(0.045);
+			config.qsim().setStorageCapFactor(0.045);
+		}
 	}
 }
