@@ -1,5 +1,6 @@
 package org.eqasim.nantes;
 
+import org.eqasim.core.components.config.EqasimConfigGroup;
 import org.eqasim.core.simulation.analysis.EqasimAnalysisModule;
 import org.eqasim.core.simulation.mode_choice.EqasimModeChoiceModule;
 import org.eqasim.nantes.mode_choice.NantesModeChoiceModule;
@@ -24,6 +25,9 @@ public class RunSimulation {
 		Scenario scenario = ScenarioUtils.createScenario(config);
 		NantesConfigurator.configureScenario(scenario);
 		ScenarioUtils.loadScenario(scenario);
+
+		EqasimConfigGroup eqasimConfig = (EqasimConfigGroup) config.getModules().get(EqasimConfigGroup.GROUP_NAME);
+		eqasimConfig.setUseScheduleBasedTransport(false);
 
 		Controler controller = new Controler(scenario);
 		NantesConfigurator.configureController(controller);

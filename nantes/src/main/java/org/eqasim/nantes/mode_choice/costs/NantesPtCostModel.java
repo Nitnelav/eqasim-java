@@ -42,7 +42,7 @@ public class NantesPtCostModel implements CostModel {
 				if (leg.getMode().equals(TransportMode.pt)) {
 					TransitPassengerRoute route = (TransitPassengerRoute) leg.getRoute();
 
-					String transportMode = transitSchedule.getTransitLines().get(route.getRouteId()).getRoutes()
+					String transportMode = transitSchedule.getTransitLines().get(route.getLineId()).getRoutes()
 							.get(route.getRouteId()).getTransportMode();
 
 					if (!transportMode.equals("bus") && !transportMode.equals("subway")) {
