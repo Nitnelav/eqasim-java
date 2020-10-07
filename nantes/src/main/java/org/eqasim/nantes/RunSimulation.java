@@ -15,7 +15,7 @@ public class RunSimulation {
 	static public void main(String[] args) throws ConfigurationException {
 		CommandLine cmd = new CommandLine.Builder(args) //
 				.requireOptions("config-path") //
-				.allowPrefixes("mode-parameter", "cost-parameter") //
+				.allowPrefixes("mode-choice-parameter", "cost-parameter") //
 				.build();
 
 		Config config = ConfigUtils.loadConfig(cmd.getOptionStrict("config-path"), NantesConfigurator.getConfigGroups());
@@ -24,7 +24,6 @@ public class RunSimulation {
 		Scenario scenario = ScenarioUtils.createScenario(config);
 		NantesConfigurator.configureScenario(scenario);
 		ScenarioUtils.loadScenario(scenario);
-		NantesConfigurator.adjustScenario(scenario);
 
 		Controler controller = new Controler(scenario);
 		NantesConfigurator.configureController(controller);

@@ -7,6 +7,7 @@ import org.matsim.api.core.v01.population.Person;
 import org.matsim.households.Household;
 
 public class NantesConfigurator extends EqasimConfigurator {
+	/*
 	static public void adjustScenario(Scenario scenario) {
 		EqasimConfigurator.adjustScenario(scenario);
 
@@ -20,4 +21,5 @@ public class NantesConfigurator extends EqasimConfigurator {
 			}
 		}
 	}
+	*/
 }

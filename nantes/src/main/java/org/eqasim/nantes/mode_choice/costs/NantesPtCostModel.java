@@ -2,9 +2,7 @@ package org.eqasim.nantes.mode_choice.costs;
 
 import java.util.List;
 
-import org.eqasim.core.components.transit.routing.EnrichedTransitRoute;
 import org.eqasim.core.simulation.mode_choice.cost.CostModel;
-import org.eqasim.core.simulation.mode_choice.utilities.predictors.PredictorUtils;
 import org.eqasim.nantes.mode_choice.utilities.predictors.NantesPersonPredictor;
 import org.eqasim.nantes.mode_choice.utilities.predictors.NantesSpatialPredictor;
 import org.eqasim.nantes.mode_choice.utilities.variables.NantesPersonVariables;
@@ -14,12 +12,12 @@ import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.population.Leg;
 import org.matsim.api.core.v01.population.Person;
 import org.matsim.api.core.v01.population.PlanElement;
+import org.matsim.contribs.discrete_mode_choice.model.DiscreteModeChoiceTrip;
+import org.matsim.core.utils.geometry.CoordUtils;
+import org.matsim.pt.routes.TransitPassengerRoute;
+import org.matsim.pt.transitSchedule.api.TransitSchedule;
 
 import com.google.inject.Inject;
-
-import ch.ethz.matsim.discrete_mode_choice.model.DiscreteModeChoiceTrip;
-import org.matsim.core.utils.geometry.CoordUtils;
-import org.matsim.pt.transitSchedule.api.TransitSchedule;
 
 public class NantesPtCostModel implements CostModel {
 	private final NantesPersonPredictor personPredictor;
@@ -42,10 +40,10 @@ public class NantesPtCostModel implements CostModel {
 				Leg leg = (Leg) element;
 
 				if (leg.getMode().equals(TransportMode.pt)) {
-					EnrichedTransitRoute route = (EnrichedTransitRoute) leg.getRoute();
+					TransitPassengerRoute route = (TransitPassengerRoute) leg.getRoute();
 
-					String transportMode = transitSchedule.getTransitLines().get(route.getTransitLineId()).getRoutes()
-							.get(route.getTransitRouteId()).getTransportMode();
+					String transportMode = transitSchedule.getTransitLines().get(route.getRouteId()).getRoutes()
+							.get(route.getRouteId()).getTransportMode();
 
 					if (!transportMode.equals("bus") && !transportMode.equals("subway")) {
 						return false;
