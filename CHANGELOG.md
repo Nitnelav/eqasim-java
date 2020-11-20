@@ -6,6 +6,11 @@ included in the (note yet determined) next version number.
 
 **Development version**
 
+- Bugfix: Rare issue in `EqasimTransitEngine` leading to inconsistent ordering of event times
+
+**1.2.0**
+
+- Properly perform mode choice for "free" activity chains or those which do not start or end with "home"
 - Added Corsica unit test case for running simulation and cutting French scenarios
 - Remove `EnrichedTransitRoute` and use default `TransitPassengerRoute`
 - Enable support for network-based public transport simulation by setting `eqasim.useScheduleBasedTransport` to `false` (it is activated by default)
